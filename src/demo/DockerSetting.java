@@ -18,7 +18,7 @@ public class DockerSetting {
 	private WebDriver driver;
 	  private String baseUrl;
 	  private boolean acceptNextAlert = true;
-	  private StringBuffer verificationErrors = new StringBuffer();
+	private StringBuffer verificationErrors = new StringBuffer();
 
 	  @Before
 	  public void setUp() throws Exception {
@@ -28,32 +28,40 @@ public class DockerSetting {
 	  }
 
 	  @Test
-	  public void testUntitledTestCase() throws Exception {
+	  public void testSetting() throws Exception {
 	    driver.get("http://www.doclever.cn/controller/index/index.html");
 	    driver.findElement(By.linkText("µÇÂ¼")).click();
 	    Thread.sleep(5000);
+	    
 	    driver.findElement(By.xpath("//input[@type='text']")).clear();
 	    driver.findElement(By.xpath("//input[@type='text']")).sendKeys("zengzhaohong");
 	    driver.findElement(By.xpath("//input[@type='password']")).clear();
 	    driver.findElement(By.xpath("//input[@type='password']")).sendKeys("123456");
-	    driver.findElement(By.id("login")).click();
+	    driver.findElement(By.xpath("//button[@id='login']/span")).click();
+	    
 	    Thread.sleep(3000);
+	    driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[1]/div[3]")).click();
 	    
 	    driver.findElement(By.name("age")).clear();
-	    driver.findElement(By.name("age")).sendKeys("21");
-	    
-	    driver.findElement(By.name("company")).clear();
-	    driver.findElement(By.name("company")).sendKeys("1234");
+	    driver.findElement(By.name("age")).sendKeys("22");
+//	    driver.findElement(By.xpath("//input[@name='age']")).clear();
+//	    driver.findElement(By.xpath("//input[@name='age']")).sendKeys("23");
 	    
 	    driver.findElement(By.name("sex")).click();
-	    driver.findElement(By.xpath("//div[2]/div/div/ul/li")).click();
+	    driver.findElement(By.xpath("//div[2]/div/div/ul/li[2]")).click();
 
+	    driver.findElement(By.name("company")).clear();
+	    driver.findElement(By.name("company")).sendKeys("12345");
+	   
+	    driver.findElement(By.name("qq")).clear();
+	    driver.findElement(By.name("qq")).sendKeys("12345678");
+	    
 	    driver.findElement(By.name("email")).clear();
-	    driver.findElement(By.name("email")).sendKeys("1115827740@qq.com");
-
+	    driver.findElement(By.name("email")).sendKeys("111582@qq.com");
+	    
 	    driver.findElement(By.name("phone")).clear();
-	    driver.findElement(By.name("phone")).sendKeys("135456789123");
-	    driver.findElement(By.xpath("//div[@id='personInfo']/div/div[3]/form/div[4]/div/button/span")).click();
+	    driver.findElement(By.name("phone")).sendKeys("135456789188");
+	    driver.findElement(By.xpath("(//button[@type='button'])[27]")).click();
 	  }
 
 	  @After
