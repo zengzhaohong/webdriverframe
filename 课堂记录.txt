@@ -1,0 +1,128 @@
+我的 作业
+登陆 信息设置 退出  这个就是一个自动化测试场景，对应一个junit4的一个用例
+
+在实际工作种，我们就是根据功能，做一个又一个的自动化用例，既java文件
+
+通过suite 把这些java文件组织起来运行
+
+在做ui自动化测试，在页面切换时在等待时间
+
+
+最经典的二次封装
+ private boolean isElementPresent(By by) {
+	    try {
+	      driver.findElement(by);
+	      return true;
+	    } catch (NoSuchElementException e) {
+	      return false;
+	    }
+	  }
+
+
+可以使用assertArrayEquals 进行多点比较
+
+三种最常用的断言
+1.页面中有无元素
+2.页面中有无文字
+3.获取元素中的value值
+
+自动化的步骤
+1.录制脚本
+2,修改录制的脚本（脚本录制不成功，手动编写元素，2页面于页面之间跳转时加sleep，3.上传图片的时候用sendkeys方法（上传按钮是一个input）4.退出时退出id是动态的，用xpath函数start-with，
+   5.用action.moveToElement 方法解决移动到元素出现下拉单的问题，6，关于性别选项，可以用点击的api完成对元素的操作，没必要用selection相关api）
+3.回放脚本，确保脚本调试成功
+4.加断言验证脚本的成功性 （assertArrayEquals 进行多点比较，api的二次封装 isElementPresent(By by) ）
+三种最常用的断言
+1.页面中有无元素
+2.页面中有无文字
+3.获取元素中的value值
+
+selenium 的一些api知识点
+基础的架构设计
+自动化用例的设计思路
+
+远程执行api的时候，一定要把 standalone server给启动
+
+我们的环境
+server1   ie8   firefox47  chrome
+server2    ie11   firefox50+  chrome
+server3    ege   firefox50+  chrome
+
+自动化主要是回归测试>加了新功能，把新功能加到回归测试用例集里
+
+selenium 中的 Actions 模拟鼠标键盘操作，他针对的对象也是web元素
+而java的Robot 类，中对元素的操作，完全是针对我们鼠标和键盘的
+robot类只找当前的光标所在位置
+
+使用robot类的缺陷，不支持中文，另外输入法一定是英文
+
+对于共有方法的设计，我们要特别关注 方法的参数，以及方法的返回值，我所讲的robot类应用，以及sikuli类的应用，就是针对解决自动化测试中遇到的实际问题！！！！！！
+
+我们不同的自动化测试环境（开发环境，集成测试环境，类生产测试环境，生产环境）
+
+
+在自动化测试中配置文件的作用，把经常变化的变量，放到配置文件中，这样，一旦发生变化，修改配置文件即可
+
+
+robot\sikuli\proterties  这些类我们把他称之为工具类，在自动化测试工程中不是必须有的，但是有了他会让我们自动化，做的更加的顺利，而且有更富的功能，这块类的编写，直接体现我们的编码能力
+
+所谓的po模式，就是按页面进行划分，一个page 有一个objectstore，根据po模式，用例的设计方法也是主要以页面为单位
+
+往往，我们一些用例并不是以页面为单位执行的，例如somke（冒烟测试），他是核心的业务，而核心业务往往是跨页面（各个不同的模块都是由关联的）
+
+把我们的objectstore，无需按照页面进行设计，如果你的应用不大，一个objectstore就可以了，如果应用规范较大，可以采用object 集成的形式
+
+拿到产品，以模块进行划分，A，B, C  ,对应com.my.A,com.my.B,com.my.C
+
+object store 都是由命名规则的，模块_功能_元素
+Login_User="id=user" 》“id=people”
+Login_Pwd=""
+
+
+public static final String LOGIN_BTN="id=login";
+driver.findElement(parseObject(ObjectStore.LOGIN_BTN)).click();
+
+对于业务设计由两种方案
+
+1. 在业务本身，既方法中完成业务成功与否的校验
+
+2.在业务外，既方法外完成业务成功与否的校验
+
+对于某一个点功能通过与否，根据页面中的元素，文字，或者元素的value；那么元素，文字，或者元素的value 都可以被称作校验点
+
+VP_login=""
+VP_logout=""
+
+这些变量被保存在VPStore
+assertTrue（isElementPresent(VPStroe.VP_login)）
+
+
+设计bussinesslib 的业务原则
+
+1.使用频繁的业务
+2.封装的业务，要足够健壮，调用者更改参数就可以完成不同的使用需求
+3.业务发生变化了，可以改内部的代码实现；也可以增加一个同名不同参的方法，重载的应用
+
+login(user pwd)
+login(driver,user,pwd)
+
+看到类的命名为tool\kit,大家就知道他是工具包
+
+
+我们的 robotkeyboard 这个可以独立存在，也可以作为autotesttool的内部类存在
+
+
+自动化用例设计  有两类
+
+1.用例和用例之间没有 关联关系，一个用例的失败不会影响另一个用例
+
+2.依赖关系比较强，一个失败，后面就没有必要再跑的用例（a,架构课会讲，b直接把多个测试点写成一条用例）
+
+
+
+
+
+
+
+
+
